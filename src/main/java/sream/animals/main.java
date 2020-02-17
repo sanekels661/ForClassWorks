@@ -2,6 +2,7 @@ package sream.animals;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 
 public class main {
 
@@ -22,7 +23,29 @@ public class main {
             foodName = foodName1.toString();
             weight = weight1;
         }
-    }
+
+         @Override
+         public boolean equals(Object o) {
+             if (this == o) return true;
+             if (o == null || getClass() != o.getClass()) return false;
+             Food food = (Food) o;
+             return Double.compare(food.weight, weight) == 0 &&
+                     Objects.equals(foodName, food.foodName);
+         }
+
+         @Override
+         public int hashCode() {
+             return Objects.hash(foodName, weight);
+         }
+
+         @Override
+         public String toString() {
+             return "Food{" +
+                     "foodName='" + foodName + '\'' +
+                     ", weight=" + weight +
+                     '}';
+         }
+     }
 
     enum animalType {
         MAMMALS,
@@ -46,6 +69,32 @@ public class main {
             type = type1.toString();
         }
 
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Animal animal = (Animal) o;
+            return Double.compare(animal.age, age) == 0 &&
+                    Objects.equals(foodList, animal.foodList) &&
+                    Objects.equals(type, animal.type) &&
+                    Objects.equals(name, animal.name);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(foodList, type, name, age);
+        }
+
+        @Override
+        public String toString() {
+            return "Animal{" +
+                    "foodList=" + foodList +
+                    ", type='" + type + '\'' +
+                    ", name='" + name + '\'' +
+                    ", age=" + age +
+                    '}';
+        }
     }
+
 
 }
