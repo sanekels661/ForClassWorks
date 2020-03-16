@@ -14,6 +14,7 @@ public class main {
         MEAT;
     }
 
+
      static final class Food implements Serializable {
 
         private String foodName;
